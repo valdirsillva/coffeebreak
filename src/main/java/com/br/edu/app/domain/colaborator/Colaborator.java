@@ -1,11 +1,12 @@
 package com.br.edu.app.domain.colaborator;
 
+import java.util.UUID;
+
 import com.br.edu.app.domain.department.Department;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -23,8 +24,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Colaborator {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
