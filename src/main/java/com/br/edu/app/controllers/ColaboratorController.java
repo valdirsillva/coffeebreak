@@ -18,9 +18,13 @@ public class ColaboratorController {
     private ColaboratorService colaboratorService;
 
     @PostMapping("/colaboradores")
-    public ResponseEntity<Colaborator> create(@RequestBody ColaboratorRequestDTO body) {
-        Colaborator colaborator = this.colaboratorService.create(body);
-
-        return ResponseEntity.created(null).body(colaborator);
+    public ResponseEntity<?> create(@RequestBody ColaboratorRequestDTO body) {
+        try {
+            Colaborator colaborator = this.colaboratorService.create(body);
+            return ResponseEntity.created(null).body(colaborator);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
     }
 }

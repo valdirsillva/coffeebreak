@@ -45,7 +45,7 @@ public class DepartmentRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should not get Departments from DB when user not exists")
+    @DisplayName("Should not get Departments from DB when department not exists")
     void findDepartmentBySuccessCase2() {
         String id = "8f391221-6bd9-4610-b282-998ec0f2823d";
         UUID uuidFromString = UUID.fromString(id);

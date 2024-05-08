@@ -6,4 +6,5 @@ import com.br.edu.app.domain.colaborator.Colaborator;
 
 public interface ColaboratorRepository extends JpaRepository<Colaborator, UUID> {
     
+    Colaborator findByEmail(String email);
 }
