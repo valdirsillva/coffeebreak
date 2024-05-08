@@ -1,6 +1,8 @@
 package com.br.edu.app.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,15 @@ public class ColaboratorService {
     public List<Colaborator> list() {
         List<Colaborator> colaboratorsList = this.colaboratorRepository.findAll();
         return colaboratorsList;
+    }
+
+    public Colaborator getById(UUID id) throws Exception {
+        Optional<Colaborator> colaborator = this.colaboratorRepository.findById(id);
+
+        if (colaborator.isEmpty()) {
+            throw new Exception("Nenhum colaborador foi encontrado!");
+        }
+
+        return colaborator.get();
     }
 }
