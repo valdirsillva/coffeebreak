@@ -44,6 +44,16 @@ public class DepartmentRepositoryTest {
         assertThat(result.isPresent()).isTrue();
     }
 
+    @Test
+    @DisplayName("Should not get Departments from DB when user not exists")
+    void findDepartmentBySuccessCase2() {
+        String id = "8f391221-6bd9-4610-b282-998ec0f2823d";
+        UUID uuidFromString = UUID.fromString(id);
+
+        Optional<Department> result = this.departmentRepository.findById(uuidFromString);
+        assertThat(result.isEmpty()).isTrue();
+    }
+
     private Department createDepartment(DepartmentRequestDTO data) {
         Department newDepartment = new Department();
         LocalDateTime dateNow = LocalDateTime.now();
