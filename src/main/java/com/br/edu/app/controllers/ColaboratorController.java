@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.edu.app.domain.colaborator.Colaborator;
-import com.br.edu.app.dtos.ColaboratorRequestDTO;
+import com.br.edu.app.dtos.ColaboratorDTO;
 import com.br.edu.app.services.ColaboratorService;
 
 @RestController
@@ -18,7 +18,7 @@ public class ColaboratorController {
     private ColaboratorService colaboratorService;
 
     @PostMapping("/colaboradores")
-    public ResponseEntity<?> create(@RequestBody ColaboratorRequestDTO body) {
+    public ResponseEntity<?> create(@RequestBody ColaboratorDTO body) {
         try {
             Colaborator colaborator = this.colaboratorService.create(body);
             return ResponseEntity.created(null).body(colaborator);

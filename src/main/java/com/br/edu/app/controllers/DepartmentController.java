@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.edu.app.domain.department.Department;
-import com.br.edu.app.dtos.DepartmentRequestDTO;
+import com.br.edu.app.dtos.DepartmentDTO;
 import com.br.edu.app.services.DepartmentService;
 
 @RestController
@@ -23,18 +23,18 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @GetMapping("/departamentos")
-    public ResponseEntity<List<DepartmentRequestDTO>> getDepartments() {
+    public ResponseEntity<List<DepartmentDTO>> getDepartments() {
         List<Department> departmentsList = this.departmentService.getDepartments();
 
-        List<DepartmentRequestDTO> departmentDTOs = departmentsList.stream()
-            .map(department -> new DepartmentRequestDTO(department.getId(), department.getName(), department.getCreatedAt()))
+        List<DepartmentDTO> departmentDTOs = departmentsList.stream()
+            .map(department -> new DepartmentDTO(department.getId(), department.getName(), department.getCreatedAt()))
             .collect(Collectors.toList());
 
         return ResponseEntity.ok(departmentDTOs);
     }
 
     @PostMapping("/departamentos")
-    public ResponseEntity<Department> createDepartment(@RequestBody DepartmentRequestDTO body) {
+    public ResponseEntity<Department> createDepartment(@RequestBody DepartmentDTO body) {
         Department department = this.departmentService.create(body);
 
         return ResponseEntity.created(null).body(department);

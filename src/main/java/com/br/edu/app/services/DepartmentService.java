@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.br.edu.app.domain.department.Department;
-import com.br.edu.app.dtos.DepartmentRequestDTO;
+import com.br.edu.app.dtos.DepartmentDTO;
 import com.br.edu.app.repositories.DepartmentRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class DepartmentService {
        return departmentList;
     }
 
-    public Department create(DepartmentRequestDTO dto) {
+    public Department create(DepartmentDTO dto) {
         Department department = new Department();
         LocalDateTime dateNow = LocalDateTime.now();
 
