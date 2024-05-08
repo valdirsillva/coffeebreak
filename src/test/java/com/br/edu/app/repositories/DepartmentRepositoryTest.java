@@ -38,10 +38,9 @@ public class DepartmentRepositoryTest {
             createdAt
         );
 
-        this.createDepartment(data);
+        var newDepartment = this.createDepartment(data);
 
-        Optional<Department> result = this.departmentRepository.findById(uuidFromString);
-
+        Optional<Department> result = this.departmentRepository.findById(newDepartment.getId());
         assertThat(result.isPresent()).isTrue();
     }
 
