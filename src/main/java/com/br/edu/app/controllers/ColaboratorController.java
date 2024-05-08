@@ -1,7 +1,10 @@
 package com.br.edu.app.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,18 @@ import com.br.edu.app.services.ColaboratorService;
 public class ColaboratorController {
     @Autowired
     private ColaboratorService colaboratorService;
+
+    @GetMapping("/colaboradores")
+    public ResponseEntity<?> get() {
+        try {
+            List<Colaborator> colaboratorsList = this.colaboratorService.list();
+
+            return ResponseEntity.ok().body(colaboratorsList);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(e.getMessage());
+        }
+    }
 
     @PostMapping("/colaboradores")
     public ResponseEntity<?> create(@RequestBody ColaboratorDTO body) {

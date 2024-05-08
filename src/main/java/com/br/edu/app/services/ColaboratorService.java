@@ -1,5 +1,7 @@
 package com.br.edu.app.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.br.edu.app.domain.colaborator.Colaborator;
@@ -29,5 +31,10 @@ public class ColaboratorService {
         }
 
         return this.colaboratorRepository.save(colaborator);
+    }
+
+    public List<Colaborator> list() {
+        List<Colaborator> colaboratorsList = this.colaboratorRepository.findAll();
+        return colaboratorsList;
     }
 }
