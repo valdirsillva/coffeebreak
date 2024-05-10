@@ -12,7 +12,7 @@ jobs:
               uses: actions/checkout@v3
 
             - name: Create Setup Java
-              uses: actions/java-setup-java@v3
+              uses: actions/setup-java@v3
               with:
                 distribution: 'temorin'
                 java-version: '17'
