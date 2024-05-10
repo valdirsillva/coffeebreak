@@ -18,6 +18,15 @@ jobs:
                 java-version: '17'
             - name: Build project
               run: mvn clean install 
+            - name: Login Docker Hub
+              run: docker login -u ${{secrets.DOCKERHUB_USER}} -p ${{secrets.DOCKERHUB_PWD}}
+            - name: Build docker image
+              run: docker build -t valdirsillva/app .
+            - name: Push image docker 
+              run: docker push valdirsillva/app 
+
+
+            
 
 
 
