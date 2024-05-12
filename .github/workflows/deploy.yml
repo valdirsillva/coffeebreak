@@ -24,8 +24,8 @@ jobs:
               run: docker build -t valdirsillva/app .
             - name: Push image docker 
               run: docker push valdirsillva/app  
-    deploy:
-        needs: build  
+    cd:
+        needs: ci  
         runs-on: runs-hosted
         steps:
             - name: Pull image from docker hub
