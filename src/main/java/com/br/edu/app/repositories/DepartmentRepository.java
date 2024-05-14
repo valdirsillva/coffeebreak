@@ -6,5 +6,4 @@ import com.br.edu.app.domain.department.Department;
 
 public interface DepartmentRepository extends JpaRepository<Department, UUID> {
 
-    
 }
