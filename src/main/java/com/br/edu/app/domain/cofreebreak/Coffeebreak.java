@@ -1,15 +1,18 @@
 package com.br.edu.app.domain.cofreebreak;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import com.br.edu.app.domain.colaborator.Colaborator;
+import com.br.edu.app.domain.ingredients.Ingredients;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -42,6 +45,13 @@ public class Coffeebreak {
     private Integer quantityColaborator;
 
     @ManyToOne
-    @JoinColumn(name = "coffeebreak_id", nullable = false)
+    @JoinColumn(name = "colaborator_id", nullable = false)
     private Colaborator colaborator;
+
+    @JoinTable(
+        name = "coffeebreak_ingredient",
+        joinColumns = @JoinColumn(name = "coffeebreak_id"),
+        inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+    )
+    private List<Ingredients> ingredients;
 }
