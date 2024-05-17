@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.ActiveProfiles;
 import com.br.edu.app.domain.department.Department;
-import com.br.edu.app.dtos.DepartmentRequestDTO;
+import com.br.edu.app.dtos.DepartmentDTO;
 import jakarta.persistence.EntityManager;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,11 +32,10 @@ public class DepartmentRepositoryTest {
         String id = "8f391221-6bd9-4610-b282-998ec0f2823d";
         UUID uuidFromString = UUID.fromString(id);
 
-        DepartmentRequestDTO data = new DepartmentRequestDTO(
-            uuidFromString, 
-            "Recursos Humanos", 
-            createdAt
-        );
+        DepartmentDTO data = new DepartmentDTO(
+                uuidFromString,
+                "Recursos Humanos",
+                createdAt);
 
         var newDepartment = this.createDepartment(data);
 
@@ -54,7 +53,7 @@ public class DepartmentRepositoryTest {
         assertThat(result.isEmpty()).isTrue();
     }
 
-    private Department createDepartment(DepartmentRequestDTO data) {
+    private Department createDepartment(DepartmentDTO data) {
         Department newDepartment = new Department();
         LocalDateTime dateNow = LocalDateTime.now();
 

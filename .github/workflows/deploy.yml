@@ -1,0 +1,42 @@
+name: Deploy Application Coffeebreak
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Create Setup Java
+              uses: actions/setup-java@v3
+              with:
+                distribution: 'temurin'
+                java-version: '17'
+            - name: Build project
+              run: mvn clean install 
+            - name: Login Docker Hub
+              run: docker login -u ${{secrets.DOCKERHUB_USER}} -p ${{secrets.DOCKERHUB_PWD}}
+            - name: Build docker image
+              run: docker build -t valdirsillva/app .
+            - name: Push image docker 
+              run: docker push valdirsillva/app  
+    cd:
+        needs: ci  
+        runs-on: runs-hosted
+        steps:
+            - name: Pull image from docker hub
+              run: docker pull valdirsillva/app:latest
+            - name: Run docker container
+              run: docker run -d -p 8080:8080 app valdirsillva/app 
+            
+
+
+            
+
+
+
+                    
